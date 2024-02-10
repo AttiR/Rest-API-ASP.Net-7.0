@@ -1,0 +1,10 @@
+POST http://localhost:5152/car
+Content-Type:  application/json
+
+{
+    "brand": "Toyota",
+    "model": "Camry",
+    "year": 2023,
+    "color": "Blue",
+    "price": 25000
+}
