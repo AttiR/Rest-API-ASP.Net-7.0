@@ -1,0 +1,12 @@
+@id=00000000-0000-0000-0000-000000000000
+
+PUT http://localhost:5152/cars/{{id}}
+Content-Type:  application/json
+
+{
+    "brand": "Toyota",
+    "model": "Camry",
+    "year": 2023,
+    "color": "Blue",
+    "price": 25000
+}
