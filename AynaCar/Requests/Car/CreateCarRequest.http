@@ -1,4 +1,4 @@
-POST http://localhost:5152/car
+POST http://localhost:5152/cars
 Content-Type:  application/json
 
 {
