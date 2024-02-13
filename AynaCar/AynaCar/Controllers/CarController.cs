@@ -1,9 +1,11 @@
 using AynaCar.Contracts.Car;
+using AynaCar.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AynaCar.Coontrollers;
 
 [ApiController]
+[Route("[Controller]")]
 
 public class CarContoller : ControllerBase
 {
@@ -12,7 +14,32 @@ public class CarContoller : ControllerBase
 
     public IActionResult CreateCar(CreateCarRequest request)
     {
-        return Ok(request);
+        var car = new Car(
+           Guid.NewGuid(),
+           request.Brand,
+           request.Model,
+           request.Year,
+           request.Color,
+           request.Price,
+           DateTime.UtcNow
+           );
+
+        // Save car to database
+        // taking the data from the system and converting it back to API definition
+        var response = new CarResponse(
+            car.Id,
+            car.Brand,
+            car.Model,
+            car.Year,
+            car.Color,
+            car.Price,
+            car.LastModifiedDateTime
+        );
+
+        return CreatedAtAction(
+            actionName: nameof(GetCar),
+            routeValues: new { id = car.Id },
+            value:response);
     }
 
     // Endpoint to get a Car by id

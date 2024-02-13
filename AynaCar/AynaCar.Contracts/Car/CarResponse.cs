@@ -6,5 +6,6 @@ public record CarResponse
     string Model,
     int Year,
     string Color,
-    decimal Price
+    decimal Price,
+    DateTime LastModifiedDateTime
 );
