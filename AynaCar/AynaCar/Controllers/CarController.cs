@@ -1,5 +1,6 @@
 using AynaCar.Contracts.Car;
 using AynaCar.Models;
+using AynaCar.Services.Cars;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AynaCar.Coontrollers;
@@ -9,8 +10,10 @@ namespace AynaCar.Coontrollers;
 
 public class CarContoller : ControllerBase
 {
-    // Endpoint to create a new car
-    [HttpPost("/cars")]
+
+    private readonly ICarService _carService;
+
+    [HttpPost]
 
     public IActionResult CreateCar(CreateCarRequest request)
     {
@@ -24,6 +27,7 @@ public class CarContoller : ControllerBase
            DateTime.UtcNow
            );
 
+        _carService.CreateCar(car);
         // Save car to database
         // taking the data from the system and converting it back to API definition
         var response = new CarResponse(
